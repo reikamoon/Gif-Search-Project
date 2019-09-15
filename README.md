@@ -1,2 +1,2 @@
 # Gif-Search-Project
-by Anjelica Ambrosio + 
+by Anjelica Ambrosio +
