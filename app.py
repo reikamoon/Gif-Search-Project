@@ -13,7 +13,7 @@ def index():
     # TODO: Make 'params' dict with query term and API key
 
     # TODO: Make an API call to Tenor using the 'requests' library
-
+        #API CODE FOR TENOR: KWIISY5DIB57
     # TODO: Get the first 10 results from the search results
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
