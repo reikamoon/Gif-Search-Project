@@ -31,6 +31,7 @@ if r.status_code == 200:
 else:
     pass
     # handle error
+    #credits to Tenor for template. URL for template here: https://tenor.com/gifapi/documentation?gclid=EAIaIQobChMIw8HPp-7T5AIVdBh9Ch3Xmw2fEAAYASACEgJFEvD_BwE#quickstart
     # TODO: Get the first 10 results from the search results
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
