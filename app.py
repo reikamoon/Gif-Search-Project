@@ -14,6 +14,23 @@ def index():
 
     # TODO: Make an API call to Tenor using the 'requests' library
         #API CODE FOR TENOR: KWIISY5DIB57
+# set the apikey
+apikey = "KWIISY5DIB57"  # test value
+
+# get the GIF's id and search used
+shard_gifs_id = top_8gifs[0]["id"]
+
+search_term = "excited"
+
+r = requests.get("https://api.tenor.com/v1/registershare?id=%s&key=%s&q=%s" % (
+shard_gifs_id, apikey, search_term))
+
+if r.status_code == 200:
+    pass
+    # move on
+else:
+    pass
+    # handle error
     # TODO: Get the first 10 results from the search results
 
     # TODO: Render the 'index.html' template, passing the gifs as a named parameter
