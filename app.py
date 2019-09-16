@@ -8,9 +8,20 @@ app = Flask(__name__)
 def index():
     """Return homepage."""
 
+    apikey = "KWIISY5DIB57"
+    lmt = 10
+    search_term = request.args.get("search")
+    content_filter = ""
+
     # TODO: Extract query term from url
 
     # TODO: Make 'params' dict with query term and API key
+    params = {
+        "query" : search_term,
+        "key" : apikey,
+        "limit" : lmt,
+        "content_filter" : filter
+    }
 
     # TODO: Make an API call to Tenor using the 'requests' library
         #API CODE FOR TENOR: KWIISY5DIB57
