@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 import json
+from random import choice
 
 app = Flask(__name__)
 
@@ -33,8 +34,7 @@ shard_gifs_id = top_8gifs[0]["id"]
 
 search_term = "excited"
 
-r = requests.get("https://api.tenor.com/v1/registershare?id=%s&key=%s&q=%s" % (
-shard_gifs_id, apikey, search_term))
+r = requests.get("https://api.tenor.com/v1/search", params=params)
 
 if r.status_code == 200:
     pass
