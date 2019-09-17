@@ -49,5 +49,18 @@ else:
 
     return render_template("index.html")
 
+@app.route('/trending')
+def trending():
+    """Return Trednging Gifs"""
+    apikey = "KWIISY5DIB57"
+    limit = 10
+    content_filter = "high"
+
+    params = {
+        'key': apikey,
+        'limit': limit,
+        'content_filter': filter
+    }
+
 if __name__ == '__main__':
     app.run(debug=True)
