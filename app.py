@@ -25,14 +25,14 @@ def index():
     }
 
         # TODO: Make an API call to Tenor using the 'requests' library
-            #API CODE FOR TENOR: KWIISY5DIB57
+        #API CODE FOR TENOR: KWIISY5DIB57
         # set the apikey
-    apikey = "KWIISY5DIB57"  # test value
+    # apikey = "KWIISY5DIB57"  # test value
 
     # get the GIF's id and search used
-    shard_gifs_id = top_8gifs[0]["id"]
-
-    search_term = "excited"
+    # shard_gifs_id = top_8gifs[0]["id"]
+    #
+    # search_term = "excited"
 
     r = requests.get("https://api.tenor.com/v1/search", params=params)
 
@@ -78,13 +78,24 @@ def random():
         'content_filter': filter
     }
 
-    r = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
-    if r.status_code == 200:
+    t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
+    if t.status_code == 200:  # If the request was successful
+        term_list = json.loads(t.content)["results"]
+    else:
+        term_list = None
+
+    search = choice(term_list)
+
+    # Make add random query term to params
+    params['q'] = search
+
+        r = requests.get("https://api.tenor.com/v1/random", params=params)
+    if r.status_code == 200:  # If the request was successful
         first_gifs = json.loads(r.content)["results"]
     else:
         first_gifs = None
 
-        return render_template("index.html", first_gifs=first_gifs, search=search)
+    return render_template("index.html", first_gifs=first_gifs, search=search)
 
 
 if __name__ == '__main__':
