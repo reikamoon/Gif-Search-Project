@@ -72,5 +72,14 @@ def random():
     limit = 10
     content_filter = "high"
 
+    params = {
+        'key': apikey,
+        'limit': limit,
+        'content_filter': filter
+    }
+
+    t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
+    
+    
 if __name__ == '__main__':
     app.run(debug=True)
