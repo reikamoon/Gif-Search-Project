@@ -26,7 +26,11 @@ def index():
 
         # TODO: Make an API call to Tenor using the 'requests' library
             #API CODE FOR TENOR: KWIISY5DIB57
+<<<<<<< HEAD
     # set the apikey
+=======
+    # set the apikey    
+>>>>>>> e8e7709f3f3639f9da1936c0dd152c9722ede71f
     apikey = "KWIISY5DIB57"  # test value
 
     # get the GIF's id and search used
@@ -81,7 +85,12 @@ def random():
     t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
     if r.status_code == 200:
         return render_template("index.html")
+<<<<<<< HEAD
 
 
+=======
+    
+    
+>>>>>>> e8e7709f3f3639f9da1936c0dd152c9722ede71f
 if __name__ == '__main__':
     app.run(debug=True)
