@@ -26,7 +26,7 @@ def index():
 
         # TODO: Make an API call to Tenor using the 'requests' library
             #API CODE FOR TENOR: KWIISY5DIB57
-    # set the apikey
+        # set the apikey
     apikey = "KWIISY5DIB57"  # test value
 
     # get the GIF's id and search used
