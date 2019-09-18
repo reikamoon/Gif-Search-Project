@@ -12,7 +12,7 @@ def index():
     apikey = "KWIISY5DIB57"
     lmt = 10
     search_term = request.args.get("search")
-    content_filter = ""
+    content_filter = "high"
 
         # TODO: Extract query term from url
 
