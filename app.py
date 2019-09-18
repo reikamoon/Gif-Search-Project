@@ -63,7 +63,7 @@ def trending():
     }
     r = requests.get("https://api.tenor.com/v1/trending", params=params)
     if r.status_code == 200:
-    return render_template("index.html")
+        return render_template("index.html")
 
 @app.route('/random')
 def random():
@@ -79,8 +79,8 @@ def random():
     }
 
     t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
-    
-    return render_template("index.html")
+    if r.status_code == 200:
+        return render_template("index.html")
     
     
 if __name__ == '__main__':
