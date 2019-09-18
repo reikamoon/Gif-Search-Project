@@ -28,9 +28,17 @@ color: #FFFFFF;
 <td ALIGN = CENTER><span class = "title">Find Me a Gif!</span></td>
 <br>
 <body class = "bgcolor">
+<br>
       <!-- TODO: Make a block 'body' so that the homepage can extend base -->
-      <body>
-      </body>
+<body>
+    <div class="normal">
+      <h1><a href="/random">Find me a Random Gif!</a></h1>
+    </div>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+</body>
 
   <!-- Include the Tenor JavaScript to fill in GIFs appropriately -->
 <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
