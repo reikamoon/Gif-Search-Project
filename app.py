@@ -61,6 +61,16 @@ def trending():
         'limit': limit,
         'content_filter': filter
     }
+    r = requests.get("https://api.tenor.com/v1/trending", params=params)
+    if r.status_code == 200:
+    return render_template("index.html")
+
+@app.route('/random')
+def random():
+    """Give random gifs"""
+    apikey = "KWIISY5DIB57"
+    limit = 10
+    content_filter = "high"
 
 if __name__ == '__main__':
     app.run(debug=True)
