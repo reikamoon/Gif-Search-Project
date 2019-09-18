@@ -79,12 +79,9 @@ def random():
     }
 
     t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
-<<<<<<< HEAD
-
-
-=======
+    
+    return render_template("index.html")
     
     
->>>>>>> f14b19fe9c11b519b40c427033b68115df7f67e5
 if __name__ == '__main__':
     app.run(debug=True)
