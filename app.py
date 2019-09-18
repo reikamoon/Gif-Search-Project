@@ -26,11 +26,7 @@ def index():
 
         # TODO: Make an API call to Tenor using the 'requests' library
             #API CODE FOR TENOR: KWIISY5DIB57
-<<<<<<< HEAD
     # set the apikey
-=======
-    # set the apikey    
->>>>>>> e8e7709f3f3639f9da1936c0dd152c9722ede71f
     apikey = "KWIISY5DIB57"  # test value
 
     # get the GIF's id and search used
@@ -41,17 +37,14 @@ def index():
     r = requests.get("https://api.tenor.com/v1/search", params=params)
 
     if r.status_code == 200:
+        first_gifs = json.loads(r.content)["results"]
         pass
     # move on
     else:
-        pass
-        # handle error
-        #credits to Tenor for template. URL for template here: https://tenor.com/gifapi/documentation?gclid=EAIaIQobChMIw8HPp-7T5AIVdBh9Ch3Xmw2fEAAYASACEgJFEvD_BwE#quickstart
-        # TODO: Get the first 10 results from the search results
+        first_gifs = "None"
 
-        # TODO: Render the 'index.html' template, passing the gifs as a named parameter
 
-    return render_template("index.html")
+    return render_template("index.html", first_gifs=first_gifs, search=search_term)
 
 @app.route('/trending')
 def trending():
@@ -67,6 +60,9 @@ def trending():
     }
     r = requests.get("https://api.tenor.com/v1/trending", params=params)
     if r.status_code == 200:
+        first_gifs = json.loads(r.content)["results"]
+    else:
+        first_gifs = None
         return render_template("index.html")
 
 @app.route('/random')
@@ -82,15 +78,14 @@ def random():
         'content_filter': filter
     }
 
-    t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
+    r = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
     if r.status_code == 200:
-        return render_template("index.html")
-<<<<<<< HEAD
+        first_gifs = json.loads(r.content)["results"]
+    else:
+        first_gifs = None
+
+        return render_template("index.html", first_gifs=first_gifs, search=search)
 
 
-=======
-    
-    
->>>>>>> e8e7709f3f3639f9da1936c0dd152c9722ede71f
 if __name__ == '__main__':
     app.run(debug=True)
