@@ -23,7 +23,7 @@ def index():
     }
 
     # Use the query, api key, and limit to find a gif
-    r = requests.get("https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, limit))
+    r = requests.get("https://api.tenor.com/v1/search?q=%s&KWIISY5DIB57=%s&10=%s" % (search_term, apikey, limit))
 
     if r.status_code == 200:
         gifs = json.loads(r.content)["results"]
