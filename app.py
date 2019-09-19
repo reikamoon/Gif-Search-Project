@@ -19,7 +19,7 @@ def index():
         "query" : search_term,
         "key" : apikey,
         "limit" : limit,
-        "content_filter" : filter
+        "content_filter" : content_filter
     }
 
 
@@ -36,7 +36,7 @@ def index():
 
 @app.route('/trending')
 def trending():
-    """Return Trednging Gifs"""
+    """Return Trending Gifs"""
     apikey = "KWIISY5DIB57"
     limit = 10
     content_filter = "high"
@@ -44,7 +44,7 @@ def trending():
     params = {
         'key': apikey,
         'limit': limit,
-        'content_filter': filter
+        'content_filter': content_filter
     }
     r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, limit))
     if r.status_code == 200:
@@ -64,7 +64,7 @@ def random():
     params = {
         'key': apikey,
         'limit': limit,
-        'content_filter': filter
+        'content_filter': content_filter
     }
 
     r = requests.get("https://api.tenor.com/v1/trending_terms?key=%s" % (apikey,))
