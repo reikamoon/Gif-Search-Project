@@ -10,7 +10,7 @@ def index():
     """Return homepage."""
 
     apikey = "KWIISY5DIB57"
-    lmt = 10
+    limit = 10
     search_term = request.args.get("search")
     content_filter = "high"
 
@@ -18,7 +18,7 @@ def index():
     params = {
         "query" : search_term,
         "key" : apikey,
-        "limit" : lmt,
+        "limit" : limit,
         "content_filter" : filter
     }
 
