@@ -13,7 +13,8 @@ def index():
     lmt = 10
     search_term = request.args.get("search")
     content_filter = "high"
-    
+
+
     params = {
         "query" : search_term,
         "key" : apikey,
@@ -22,7 +23,7 @@ def index():
     }
 
 
-    r = requests.get("https://api.tenor.com/v1/search", params=params)
+    r = requests.get("https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, limit))
 
     if r.status_code == 200:
         first_gifs = json.loads(r.content)["results"]
@@ -45,14 +46,13 @@ def trending():
         'limit': limit,
         'content_filter': filter
     }
-    r = requests.get("https://api.tenor.com/v1/trending", params=params)
+    r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, limit))
     if r.status_code == 200:
         first_gifs = json.loads(r.content)["results"]
     else:
         first_gifs = None
 
     return render_template("index.html")
-
 
 @app.route('/random')
 def random():
@@ -67,7 +67,7 @@ def random():
         'content_filter': filter
     }
 
-    t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
+    r = requests.get("https://api.tenor.com/v1/trending_terms?key=%s" % (apikey,))
     if t.status_code == 200:  # If the request was successful
         term_list = json.loads(t.content)["results"]
     else:
@@ -78,8 +78,8 @@ def random():
     # Make add random query term to params
     params['q'] = search
 
-    r = requests.get("https://api.tenor.com/v1/random", params=params)
-    
+    r = requests.get("https://api.tenor.com/v1/random?q=%s&key=%s&limit=%s" % (search_term, apikey, lmt))
+
     if r.status_code == 200:  # If the request was successful
         first_gifs = json.loads(r.content)["results"]
     else:
