@@ -5,20 +5,37 @@
 <head>
 
 <title>Gif Search</title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="/static/style.css">
+<style type = "text/css">
+.bgcolor {
+background-color: #48c2be;
+}
+
+.fontcolor {
+color: #000000;
+}
+
+.title {
+font-family: Century Gothic, Arial, sans-serif;
+font-size: 50px;
+font-weight: bold;
+color: #FFFFFF;
+}
+
+.defaultfont {
+  font-family: Century Gothic, Tahoma, Arial, sans-serif;
+  font-size: 35px;
+  color: #FFFFFF;
+}
+</style>
 </head>
 <center>
-<td ALIGN = CENTER><span class = "title">Find Me a Gif!</span></td>
+<h1><td ALIGN = CENTER><span class = "title">Find Me a Gif!</span></td></h1>
 <br>
 <body class = "bgcolor">
-<br>
       <!-- TODO: Make a block 'body' so that the homepage can extend base -->
-<body>
-  {% block body %}
+     {% block body %}
 
-  {% endblock %}
-</body>
+      {% endblock %}
 
   <!-- Include the Tenor JavaScript to fill in GIFs appropriately -->
 <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
