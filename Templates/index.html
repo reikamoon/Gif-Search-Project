@@ -11,16 +11,19 @@
       <button type="Search">Search</button>
     </div>
     <br>
-    <div class="normal">
+  <!--  <div class="normal">
       <a href="/random"><span class = "defaultfont">Find me a Random Gif!</span></a>
     </div>
     <div class="content">
     </div>
+    <!-- Created search bar and search button. ---->
 
-    {% for gif in first_gifs %}
+    {% for gif in gifs %}
       {% include 'gif.html' %}
     {% endfor %}
       {% endblock %}
+        <!-- For loop created to include the GIF.html and loop the gifs passed through. ---->
+
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
 
 
