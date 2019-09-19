@@ -10,19 +10,31 @@ def index():
     """Return homepage."""
 
     apikey = "KWIISY5DIB57"
-    lmt = 10
+    limit = 10
     search_term = request.args.get("search")
     content_filter = "high"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7fb50533edadf508ad2c31869e2c0c193034fd0b
     params = {
         "q" : search_term,
         "key" : apikey,
         "limit" : limit,
+<<<<<<< HEAD
         "content_filter" : content_filter
     }
 
 
     r = requests.get("https://api.tenor.com/v1/search", params=params)
+=======
+        "content_filter" : filter
+    }
+
+
+    r = requests.get("https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, limit))
+>>>>>>> 7fb50533edadf508ad2c31869e2c0c193034fd0b
 
     if r.status_code == 200:
         first_gifs = json.loads(r.content)["results"]
@@ -45,14 +57,17 @@ def trending():
         'limit': limit,
         'content_filter': content_filter
     }
-    r = requests.get("https://api.tenor.com/v1/trending", params=params)
+    r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, limit))
     if r.status_code == 200:
         first_gifs = json.loads(r.content)["results"]
     else:
         first_gifs = None
 
     return render_template("index.html")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7fb50533edadf508ad2c31869e2c0c193034fd0b
 
 @app.route('/random')
 def random():
@@ -67,7 +82,11 @@ def random():
         'content_filter': content_filter
     }
 
+<<<<<<< HEAD
     t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
+=======
+    r = requests.get("https://api.tenor.com/v1/trending_terms?key=%s" % (apikey,))
+>>>>>>> 7fb50533edadf508ad2c31869e2c0c193034fd0b
     if t.status_code == 200:  # If the request was successful
         term_list = json.loads(t.content)["results"]
     else:
@@ -78,7 +97,11 @@ def random():
     # Make add random query term to params
     params['q'] = search
 
+<<<<<<< HEAD
     r = requests.get("https://api.tenor.com/v1/random", params=params)
+=======
+    r = requests.get("https://api.tenor.com/v1/random?q=%s&key=%s&limit=%s" % (search_term, apikey, lmt))
+>>>>>>> 7fb50533edadf508ad2c31869e2c0c193034fd0b
 
     if r.status_code == 200:  # If the request was successful
         first_gifs = json.loads(r.content)["results"]
