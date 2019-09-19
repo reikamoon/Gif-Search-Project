@@ -4,10 +4,11 @@
 
 <!-- TODO: Make an HTML form containing a search box and a submit button to add
     the search term to the query string -->
-    <div class="topnav">
-      <a class="active" href="#home">Home</a>
-      <input type="text" placeholder="Search...">
-      <button type="submit">Submit</button>
+    {% block body %}
+    <form action ="/">
+    <div class="Search">
+      <input type="text" name="search" placeholder="Search...">
+      <button type="Search">Search</button>
     </div>
     <div class="normal">
       <h1><a href="/random"><span class = "title">Find me a Random Gif!</span></a></h1>
@@ -15,6 +16,10 @@
     <div class="content">
     </div>
 
+    {% for gif in first_gifs %}
+      {% include 'gif.html' %}
+    {% endfor %}
+      {% endblock %}
 <!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
 
 
