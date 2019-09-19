@@ -14,44 +14,24 @@ def index():
     search_term = request.args.get("search")
     content_filter = "high"
 
-        # TODO: Extract query term from url
-
-        # TODO: Make 'params' dict with query term and API key
     params = {
-        "query" : search_term,
+        "q" : search_term,
         "key" : apikey,
-        "limit" : lmt,
-        "content_filter" : filter
+        "limit" : limit,
+        "content_filter" : content_filter
     }
 
-        # TODO: Make an API call to Tenor using the 'requests' library
-            #API CODE FOR TENOR: KWIISY5DIB57
-<<<<<<< HEAD
-    # set the apikey
-=======
-    # set the apikey    
->>>>>>> e8e7709f3f3639f9da1936c0dd152c9722ede71f
-    apikey = "KWIISY5DIB57"  # test value
-
-    # get the GIF's id and search used
-    shard_gifs_id = top_8gifs[0]["id"]
-
-    search_term = "excited"
 
     r = requests.get("https://api.tenor.com/v1/search", params=params)
 
     if r.status_code == 200:
-        pass
+        first_gifs = json.loads(r.content)["results"]
     # move on
     else:
-        pass
-        # handle error
-        #credits to Tenor for template. URL for template here: https://tenor.com/gifapi/documentation?gclid=EAIaIQobChMIw8HPp-7T5AIVdBh9Ch3Xmw2fEAAYASACEgJFEvD_BwE#quickstart
-        # TODO: Get the first 10 results from the search results
+        first_gifs = "None"
 
-        # TODO: Render the 'index.html' template, passing the gifs as a named parameter
 
-    return render_template("index.html")
+    return render_template("index.html", first_gifs=first_gifs, search=search_term)
 
 @app.route('/trending')
 def trending():
@@ -63,11 +43,16 @@ def trending():
     params = {
         'key': apikey,
         'limit': limit,
-        'content_filter': filter
+        'content_filter': content_filter
     }
     r = requests.get("https://api.tenor.com/v1/trending", params=params)
     if r.status_code == 200:
-        return render_template("index.html")
+        first_gifs = json.loads(r.content)["results"]
+    else:
+        first_gifs = None
+
+    return render_template("index.html")
+
 
 @app.route('/random')
 def random():
@@ -79,18 +64,29 @@ def random():
     params = {
         'key': apikey,
         'limit': limit,
-        'content_filter': filter
+        'content_filter': content_filter
     }
 
     t = requests.get("https://api.tenor.com/v1/trending_terms", params=params)
-    if r.status_code == 200:
-        return render_template("index.html")
-<<<<<<< HEAD
+    if t.status_code == 200:  # If the request was successful
+        term_list = json.loads(t.content)["results"]
+    else:
+        term_list = None
+
+    search = choice(term_list)
+
+    # Make add random query term to params
+    params['q'] = search
+
+    r = requests.get("https://api.tenor.com/v1/random", params=params)
+
+    if r.status_code == 200:  # If the request was successful
+        first_gifs = json.loads(r.content)["results"]
+    else:
+        first_gifs = None
+
+    return render_template("index.html", first_gifs=first_gifs, search=search)
 
 
-=======
-    
-    
->>>>>>> e8e7709f3f3639f9da1936c0dd152c9722ede71f
 if __name__ == '__main__':
     app.run(debug=True)
