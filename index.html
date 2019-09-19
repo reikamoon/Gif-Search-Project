@@ -1,0 +1,26 @@
+
+<!-- TODO: Extend 'base.html' and put content into a block 'body' to match -->
+{% extends 'base.html' %}
+
+<!-- TODO: Make an HTML form containing a search box and a submit button to add
+    the search term to the query string -->
+    {% block body %}
+    <form action ="/">
+    <div class="Search">
+      <input type="text" name="search" placeholder="Search...">
+      <button type="Search">Search</button>
+    </div>
+    <div class="normal">
+      <h1><a href="/random"><span class = "title">Find me a Random Gif!</span></a></h1>
+    </div>
+    <div class="content">
+    </div>
+
+    {% for gif in first_gifs %}
+      {% include 'gif.html' %}
+    {% endfor %}
+      {% endblock %}
+<!-- TODO: Make a for loop to loop over GIFs passed in from the server -->
+
+
+<!-- TODO: For each gif, include the 'gif.html' template to display it -->
