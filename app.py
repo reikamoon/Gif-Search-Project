@@ -22,18 +22,18 @@ def index():
         "content_filter" : content_filter
     }
 
-
+    # Use the query, api key, and limit to find a gif
     r = requests.get("https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, limit))
 
     if r.status_code == 200:
-        first_gifs = json.loads(r.content)["results"]
+        gifs = json.loads(r.content)["results"]
     # move on
     else:
-        first_gifs = "None"
+        gifs = "None"
 
 
-    return render_template("index.html", first_gifs=first_gifs, search=search_term)
-
+    return render_template("index.html", gifs=gifs, search=search_term)
+#Trending function, will use the apikey and limit to show the trending gifs.
 @app.route('/trending')
 def trending():
     """Return Trending Gifs"""
@@ -48,12 +48,12 @@ def trending():
     }
     r = requests.get("https://api.tenor.com/v1/trending?key=%s&limit=%s" % (apikey, limit))
     if r.status_code == 200:
-        first_gifs = json.loads(r.content)["results"]
+        gifs = json.loads(r.content)["results"]
     else:
-        first_gifs = None
+        gifs = None
 
     return render_template("index.html")
-
+#Random function. Will display random gifs.
 @app.route('/random')
 def random():
     """Give random gifs"""
@@ -81,11 +81,11 @@ def random():
     r = requests.get("https://api.tenor.com/v1/random?q=%s&key=%s&limit=%s" % (search_term, apikey, lmt))
 
     if r.status_code == 200:  # If the request was successful
-        first_gifs = json.loads(r.content)["results"]
+        gifs = json.loads(r.content)["results"]
     else:
-        first_gifs = None
+        gifs = None
 
-    return render_template("index.html", first_gifs=first_gifs, search=search)
+    return render_template("index.html", gifs=gifs, search=search)
 
 
 if __name__ == '__main__':
